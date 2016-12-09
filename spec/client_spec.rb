@@ -29,9 +29,8 @@ describe(Client) do
     it('lets you update a client specs in a database') do
       client1 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male")
       client1.save
-      client1 = Client.new(:name => "Clevis", :contact_number => "555-555-5555", :gender => "Male")
-      client1.update
-      expect(client1.name).to(eq("Claire"))
+      client1.update(:name => "Clevis")
+      expect(client1.name).to(eq("Clevis"))
     end
   end
 end
