@@ -19,20 +19,23 @@
     </form>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-5">
     <% if @stylists == nil %>
     <% else %>
     <h2>All Current Stylists</h2>
       <% @stylists.each() do |stylist| %>
       <form action="/" method="post">
+        <a href="/stylist/<%=stylist.id%>/clients"> <%= stylist.name %> </a><br>
+        <a class="btn btn-primary" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a><br>
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="stylist_id" value = "<%= stylist.id %>">
-        <h3> <%= stylist.name %> </h3>
         <button type="submit" class="btn-danger btn">Delete</button>
       </form>
-      <a class="btn btn-primary" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a>
       <a class="btn btn-warning" href="/stylist/update/<%= stylist.id %>">Update</a>
       <% end %>
     <% end %>
+  </div>
+  <div class="col-md-4">
+
   </div>
 </div>

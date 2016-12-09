@@ -46,3 +46,9 @@ post('/') do
   @stylists = Stylist.all
   erb(:index)
 end
+
+get ('/stylist/:id/clients') do
+  @stylists = Stylist.all
+  @stylist = params.fetch('id').to_i
+  erb(:index)
+end
