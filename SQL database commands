@@ -1,0 +1,17 @@
+-Open Terminal
+
+-Clone repository using command $ git clone .....
+
+-Bundle install gem files
+
+-Run $ postgres and the in another tab run $ psql
+
+-The past the following code in your psql command line:
+
+  =# CREATE DATABASE hair_salon;
+  =# \c hair_salon;
+  =# CREATE TABLE clients(id serial PRIMARY KEY, names varchar, contact_numbers varchar, genders varchar);
+  CREATE TABLE
+  =# CREATE TABLE stylists(id serial PRIMARY KEY, names varchar, client_ids int);
+
+-Then in your bash command line $ ruby app.rb and open a browser localhost:4567/
