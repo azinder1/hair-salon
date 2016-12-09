@@ -1,0 +1,38 @@
+<div class="text-center well">
+  <h1>Welcome to the Hairy Canary</h1>
+
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <h2>Add a Stylist</h2>
+    <form action = "/stylist/new" class="control-group" method="post">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" required>
+      </div>
+      <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" id="last_name" required>
+      </div>
+      <button class="btn btn-info" type="submit">Add a stylist</button>
+    </form>
+  </div>
+
+  <div class="col-md-4">
+    <% if @stylists == nil %>
+    <% else %>
+    <h2>All Current Stylists</h2>
+      <% @stylists.each() do |stylist| %>
+      <form action="/" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="stylist_id" value = "<%= stylist.id %>">
+        <h3> <%= stylist.name %> </h3>
+        <button type="submit" class="btn-danger btn">Delete</button>
+      </form>
+      <a class="btn btn-primary" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a>
+      <a class="btn btn-warning" href="/stylist/update/<%= stylist.id %>">Update</a>
+      <% end %>
+    <% end %>
+  </div>
+</div>

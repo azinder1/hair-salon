@@ -21,13 +21,22 @@ class Stylist
     @id = result.first().fetch('id').to_i
   end
 
+
   def self.find(id)
-    found_stylist = DB.exec("SELECT * FROM stylists WHERE id = '#{id}'").first
-    Stylist.new(:name => found_stylist['name'], :id => found_stylist['id'].to_i)
+    found_stylist = nil
+    Stylist.all.each do |stylist|
+      if stylist.id == id
+        found_stylist = stylist
+      end
+    end
+    found_stylist
   end
+
   def ==(another_stylist)
    (self.name) == (another_stylist.name)
  end
+
+
   def update(attributes)
     @id = self.id
     @name = attributes.fetch(:name, @name)
@@ -36,5 +45,6 @@ class Stylist
 
   def delete
     DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+     DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
   end
 end

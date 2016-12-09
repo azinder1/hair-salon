@@ -25,8 +25,13 @@ class Client
   end
 
   def self.find(id)
-    found_client = DB.exec("SELECT * FROM clients WHERE id = '#{id}'").first
-    Client.new(:name => found_client['name'], :contact_number => found_client['contact_number'], :gender =>found_client['gender'], :stylist_id => found_client['stylist_id'].to_i, :id => found_client['id'].to_i)
+    found_client = nil
+    Client.all.each do |client|
+      if client.id == id
+        found_client = client
+      end
+    end
+    found_client
   end
 
   def ==(another_client)
