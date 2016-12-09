@@ -28,4 +28,15 @@ class Client
   def ==(another_client)
    (self.name && self.contact_number && self.gender) == (another_client.name && another_client.contact_number && another_client.gender)
  end
+  def update(attributes)
+    @id = self.id
+    @name = attributes(:name, @name)
+    @contact_number = attributes(:contact_number, @contact_number)
+    @gender = attributes(:gender, @gender)
+    update_result - DB.exec("UPDATE clients SET name = '#{@name}', contact_number = '#{@contact_number}', gender = '#{@gender}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
+  end
 end

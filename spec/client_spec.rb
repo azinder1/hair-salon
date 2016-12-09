@@ -15,4 +15,14 @@ describe(Client) do
       expect(Client.find(client1.id)).to(eq(client1))
     end
   end
+  describe("#delete") do
+    it('lest you delete a client from the database') do
+      client1 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male")
+      client1.save
+      client2 = Client.new(:name => "Melissa", :contact_number => "444-444-4444", :gender => "Female")
+      client2.save
+      client1.delete
+      expect(Client.all).to(eq([client2]))
+    end
+  end
 end

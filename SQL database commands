@@ -10,8 +10,8 @@
 
   =# CREATE DATABASE hair_salon;
   =# \c hair_salon;
-  =# CREATE TABLE clients(id serial PRIMARY KEY, names varchar, contact_numbers varchar, genders varchar);
+  =# CREATE TABLE clients(id serial PRIMARY KEY, name varchar, contact_number varchar, gender varchar);
   CREATE TABLE
-  =# CREATE TABLE stylists(id serial PRIMARY KEY, names varchar, client_ids int);
+  =# CREATE TABLE stylists(id serial PRIMARY KEY, name varchar, client_id int);
 
 -Then in your bash command line $ ruby app.rb and open a browser localhost:4567/
