@@ -10,23 +10,19 @@ _Uses a SQL database to collect user inputted information on stylists and client
 
 ## Setup/Installation Requirements
 
-* _$ git clone https://github.com/azinder1/hair-salon
-$ cd hair-salon
-$ postgres
-$ psql
-$ bundle
-$ ruby app.rb
-$ psql (in a separate tab)
-  =# CREATE DATABASE hair_salon;
-  =# \c hair_salon;
-  =# CREATE TABLE clients(id serial PRIMARY KEY, name varchar, contact_number varchar, gender varchar);
-  CREATE TABLE
-  =# CREATE TABLE stylists(id serial PRIMARY KEY, name varchar, client_id int);
-$ ruby app.rb_
-* _open a browser with url localhost:4567/_ 
-
-
-
+* _$ git clone https://github.com/azinder1/hair-salon_
+* _$ cd hair-salon_
+* _$ postgres_
+* _$ psql_
+* _$ bundle_
+* _$ psql (in a separate tab)_
+  * _=# CREATE DATABASE hair_salon;_
+  * _=# \c hair_salon;_
+  * _=# CREATE TABLE clients(id serial PRIMARY KEY, name varchar, contact_number varchar, gender varchar, stylist_id int);_
+  * _=# CREATE TABLE stylists(id serial PRIMARY KEY, name varchar);_
+  * _=# CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon__
+* _$ ruby app.rb_
+* _open a browser with url localhost:4567/_
 
 ## Known Bugs
 _None_
