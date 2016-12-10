@@ -25,17 +25,29 @@
     <h2>All Current Stylists</h2>
       <% @stylists.each() do |stylist| %>
       <form action="/" method="post">
-        <a href="/stylist/<%=stylist.id%>/clients"> <%= stylist.name %> </a><br>
-        <a class="btn btn-primary" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a><br>
+        <h3><%= stylist.name %> </h3><br>
+        <a class="btn btn-primary btn-sm" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a><br>
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="stylist_id" value = "<%= stylist.id %>">
-        <button type="submit" class="btn-danger btn">Delete</button>
+        <button type="submit" class="btn-danger btn btn-sm">Delete</button>
       </form>
-      <a class="btn btn-warning" href="/stylist/update/<%= stylist.id %>">Update</a>
+      <a class="btn btn-warning btn-sm" href="/stylist/<%=stylist.id%>/update">Update</a>
       <% end %>
     <% end %>
   </div>
   <div class="col-md-4">
-
+    <% if @stylists == nil %>
+    <% else %>
+    <h2>All Current Clients</h2>
+    <% @clients.each() do |client| %>
+      <h3><%=client.name%></h3>
+      <form action="/" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="client_id" value = "<%= client.id %>">
+        <button type="submit" class="btn-danger btn btn-sm">Delete</button>
+      </form>
+      <a class="btn btn-warning btn-sm" href="/client/update/<%= client.id %>">Update</a>
+      <% end %>
+    <% end %>
   </div>
 </div>
