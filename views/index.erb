@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-md-3">
     <h2>Add a Stylist</h2>
-    <form action = "/stylist/new" class="control-group" method="post">
+    <form action = "/stylists" class="control-group" method="post">
       <div class="form-group">
         <label for="first_name">First Name</label>
         <input type="text" name="first_name" id="first_name" required>
@@ -24,29 +24,24 @@
     <% else %>
     <h2>All Current Stylists</h2>
       <% @stylists.each() do |stylist| %>
-      <form action="/" method="post">
+      <form action="stylist/delete/<%=stylist.id%>" method="post">
         <h3><%= stylist.name %> </h3><br>
         <a class="btn btn-primary btn-sm" href="/stylist/<%=stylist.id%>/client/new">Add a Client For the Stylist</a><br>
         <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="stylist_id" value = "<%= stylist.id %>">
         <button type="submit" class="btn-danger btn btn-sm">Delete</button>
       </form>
-      <a class="btn btn-warning btn-sm" href="/stylist/<%=stylist.id%>/update">Update</a>
+      <a class="btn btn-warning btn-sm" href="/stylist/<%=stylist.id%>/edit">Update</a>
       <% end %>
     <% end %>
   </div>
+
   <div class="col-md-4">
-    <% if @stylists == nil %>
+    <% if @clients == nil %>
     <% else %>
     <h2>All Current Clients</h2>
     <% @clients.each() do |client| %>
       <h3><%=client.name%></h3>
-      <form action="/" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="client_id" value = "<%= client.id %>">
-        <button type="submit" class="btn-danger btn btn-sm">Delete</button>
-      </form>
-      <a class="btn btn-warning btn-sm" href="/client/update/<%= client.id %>">Update</a>
+        <a class="btn btn-warning btn-sm" href="/client/<%= client.id %>/edit">Update or Delete</a>
       <% end %>
     <% end %>
   </div>

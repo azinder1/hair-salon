@@ -14,7 +14,7 @@ get('/') do
   erb(:index)
 end
 
-post ('/stylist/new') do
+post ('/stylists') do
   name = params['first_name'] + " " + params['last_name']
   @stylist = Stylist.new(:name => name)
   @stylist.save
@@ -23,8 +23,8 @@ post ('/stylist/new') do
   erb(:index)
 end
 
-delete ('/') do
-  @stylist = Stylist.find(params['stylist_id'].to_i)
+delete ('/stylist/delete/:id') do
+  @stylist = Stylist.find(params['id'].to_i)
   @stylist.delete
   @stylists = Stylist.all
   @clients = Client.all
@@ -44,22 +44,15 @@ post('/') do
   @client = Client.new(:name => name, :contact_number => contact_number, :gender => gender, :stylist_id =>stylist_id)
   @client.save
   @stylists = Stylist.all
-  erb(:index)
-end
-
-get ('/stylist/:id/clients') do
-  @stylists = Stylist.all
-  @stylist = params.fetch('id').to_i
-  erb(:index)
-end
-
-delete ('/') do
-  @client = Client.find(params['client_id'].to_i)
-  @client.delete
-  @stylists = Stylist.all
   @clients = Client.all
   erb(:index)
 end
+
+# get ('/stylist/:id/clients') do
+#   @stylists = Stylist.all
+#   @stylist = params.fetch('id').to_i
+#   erb(:index)
+# end
 
 get('/stylist/:id/update') do
   @stylist = Stylist.find(params.fetch("id").to_i())
@@ -70,6 +63,30 @@ patch('/') do
   name = params['first_name'] + " " + params['last_name']
   @stylist = Stylist.find(params.fetch("stylist_id").to_i())
   @stylist.update({:name => name})
+  @stylists = Stylist.all
+  @clients = Client.all
+  erb(:index)
+end
+
+get('/client/:id/edit') do
+  @client= Client.find(params.fetch("id").to_i())
+  erb(:client_update)
+end
+
+patch('/client/:id') do
+  name = params['first_name'] + " " + params['last_name']
+  contact_number = params['contact_number']
+  gender = params['gender']
+  @client = Client.find(params.fetch("id").to_i())
+  @client.update({:name => name, :phone => contact_number, :gender => gender})
+  @stylists = Stylist.all
+  @clients = Client.all
+  erb(:index)
+end
+
+delete('/client/delete/:id') do
+  @client = Client.find(params['id'].to_i)
+  @client.delete
   @stylists = Stylist.all
   @clients = Client.all
   erb(:index)

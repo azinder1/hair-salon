@@ -1,0 +1,41 @@
+<h2>Update Info for <%=@client.name%></h2>
+
+<h4>Current Info:</h4>
+<ul>
+  <li>Name: <%=@client.name%></li>
+  <li>Phone Number: <%=@client.contact_number%></li>
+  <li>gender: <%=@client.gender%></li>
+</ul>
+ <p>
+   Please Fill Out Each Field With Correct Info
+ </p>
+<form action = "/client/<%=@client.id%>" class="control-group" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name" id="first_name">
+  </div>
+  <div class="form-group">
+      <label for="last_name">Last Name</label>
+      <input type="text" name="last_name" id="last_name">
+  </div>
+  <div class="form-group">
+    <label for="contact_number">Phone Number</label>
+    <input type="text" name="contact_number" id="contact_number">
+  </div>
+  <div class="form-group">
+      <select class="" name="gender">
+        <option >Male</option>
+        <option >Female</option>
+      </select>
+  </div>
+
+  <button class="btn btn-info" type="submit">Update Client</button>
+</form><br><br><br>
+
+
+<form action="/client/delete/<%=@client.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-warning" type="submit" name="button">Delete this Client</button>
+
+</form>
