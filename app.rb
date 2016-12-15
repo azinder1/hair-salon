@@ -54,14 +54,14 @@ end
 #   erb(:index)
 # end
 
-get('/stylist/:id/update') do
+get('/stylist/:id/edit') do
   @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:stylist_update)
 end
 
-patch('/') do
+patch('/stylist/:id') do
   name = params['first_name'] + " " + params['last_name']
-  @stylist = Stylist.find(params.fetch("stylist_id").to_i())
+  @stylist = Stylist.find(params.fetch("id").to_i())
   @stylist.update({:name => name})
   @stylists = Stylist.all
   @clients = Client.all
