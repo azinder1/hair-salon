@@ -6,6 +6,19 @@ describe(Client) do
       expect(Client.all).to(eq([]))
     end
   end
+  describe('#name') do
+    it('returns the clients name') do
+      client1 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male", :stylist_id => '3')
+      expect(client1.name).to(eq("Clyde"))
+    end
+  end
+  describe('#==') do
+    it "is the same for clients with same attributes" do
+    client1 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male", :stylist_id => '3')
+    client2 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male", :stylist_id => '3')
+    expect(client1).to(eq(client2))
+    end
+  end
   describe('.find') do
     it('returns a client by their ID number') do
       client1 = Client.new(:name => "Clyde", :contact_number => "555-555-5555", :gender => "Male", :stylist_id => '3')
