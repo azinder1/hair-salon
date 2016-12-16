@@ -43,8 +43,18 @@ class Stylist
     update_result = DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
   end
 
+  def clients
+    returned_clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{@id};")
+    clients = []
+    returned_clients.each do |each|
+      current_client = Client.new(:name => each['name'],:contact_number => each['contact_number'],:gender => each['gender'],:stylist_id => each['stylist_id'].to_i, :id => each['id'].to_i)
+      clients.push(current_client)
+    end
+    clients
+  end
+
   def delete
     DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
-    DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
+    DB.exec("UPDATE clients SET stylist_id = NULL WHERE id = #{@id};")
   end
 end

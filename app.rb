@@ -56,6 +56,7 @@ end
 
 get('/stylist/:id/edit') do
   @stylist = Stylist.find(params.fetch("id").to_i())
+  @clients = @stylist.clients()
   erb(:stylist_update)
 end
 
